@@ -59,7 +59,7 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
-        //
+        return view('pages.edit-service', compact('service'));
     }
 
     /**
@@ -67,7 +67,22 @@ class ServiceController extends Controller
      */
     public function update(Request $request, Service $service)
     {
-        //
+                
+        $validated = $request->validate([
+        'title' => 'required|max:255',
+        'address' => 'required|max:255',
+        'manager' => 'required|max:255'
+        ]
+       );
+
+        $service = Service::find($service->id);
+        $service->title = request('title');
+        $service->address = request('address');
+        $service->manager = request('manager');
+
+        $service->save();
+
+       return redirect('/service/'.$service->id);
     }
 
     /**
@@ -75,6 +90,7 @@ class ServiceController extends Controller
      */
     public function destroy(Service $service)
     {
-        //
+        $service->delete();
+        return redirect('/');
     }
 }

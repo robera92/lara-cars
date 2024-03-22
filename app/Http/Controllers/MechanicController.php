@@ -77,7 +77,8 @@ class MechanicController extends Controller
      */
     public function edit(Mechanic $mechanic)
     {
-        //
+        $services = Service::all();
+        return view('pages.edit-mechanic', compact('mechanic', 'services'));
     }
 
     /**
@@ -85,7 +86,35 @@ class MechanicController extends Controller
      */
     public function update(Request $request, Mechanic $mechanic)
     {
-        //
+        $img_path = null;
+        
+        $validated = $request->validate([
+        'name' => 'required|max:255',
+        'last_name' => 'required|max:255',
+        'specialization' => 'required|max:255',
+        'city' => 'required|max:255',
+        'service_id' => 'required|integer'
+        ]
+       );
+
+       if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('public/images');
+            $img_path = str_replace('public/','',$path);
+        }
+
+
+        $mechanic = Mechanic::find($mechanic->id);
+        $mechanic->name = request('name');
+        $mechanic->last_name = request('last_name');
+        $mechanic->specialization = request('specialization');
+        $mechanic->city = request('city');
+        $mechanic->service_id = request('service_id');
+        $mechanic->img_path = request('img_path');
+
+        $mechanic->save();
+
+       return redirect('/mechanic/'.$mechanic->id);
+
     }
 
     /**

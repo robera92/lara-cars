@@ -18,4 +18,10 @@ class Mechanic extends Model
         return $this->hasMany(Likes::class);
     }
 
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
+    }
+
 }

@@ -2,7 +2,8 @@
 
 @section('content')
 <div class="row mt-3">
-
+<h1>{{__('Visi mechanikai')}}</h1>
+<hr>
 @foreach($mechanics as $mechanic)
 <div class="col-md-3">
 <div class="card">

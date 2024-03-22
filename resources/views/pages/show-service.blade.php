@@ -1,6 +1,8 @@
 @extends('serviceTemplate.app')
 
 @section('content')
+<button class="mt-3 btn btn-primary" onClick="history.back()">Atgal</button>
+<hr/>
 <div class="row mt-3">
 
 <h2>{{__('Servisas:')}} {{ $service->title }}</h2>
@@ -29,6 +31,13 @@
 @endforeach
 @else
 <p>{{__('Mechaniku servise nera, pridekite!')}}</p>
+@endif
+@if(Auth::check())
+<div class="col-12">
+<hr/>
+<a href="/edit-service/{{ $service->id }}" class="btn btn-success">{{ __('Redaguoti') }}</a>
+<a href="/edit-service/{{ $service->id }}/delete" class="btn btn-danger" onClick="confirm('Ar tikrai?');">{{ __('Šalinti') }}</a>
+</div>
 @endif
 </div>
 @endsection

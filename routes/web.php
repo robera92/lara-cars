@@ -42,15 +42,15 @@ Route::middleware('auth')->group(function () {
     /// service routes
     Route::get('/add-service', [ServiceController::class, 'create']);
     Route::post('/add-service/store', [ServiceController::class, 'store']);
-    Route::get('/service/{service}', [ServiceController::class, 'show']);
     Route::get('/edit-service/{service}', [ServiceController::class, 'edit']);
+    Route::post('/edit-service/{service}/update', [ServiceController::class, 'update']);
     Route::get('/edit-service/{service}/delete', [ServiceController::class, 'destroy']);
 
     // mechanic routes
     Route::get('/add-mechanic', [MechanicController::class, 'create']);
     Route::post('/add-mechanic/store', [MechanicController::class, 'store']);
-    Route::get('/mechanic/{mechanic}', [MechanicController::class, 'show']);
     Route::get('/edit-mechanic/{mechanic}', [MechanicController::class, 'edit']);
+    Route::post('/edit-mechanic/{mechanic}/update', [MechanicController::class, 'update']);
     Route::get('/edit-mechanic/{mechanic}/delete', [MechanicController::class, 'destroy']);
 
     // other routes
@@ -63,10 +63,8 @@ Route::middleware('auth')->group(function () {
 
 
 
-
-Route::get('/migrate',function(){
-   Artisan::call('migrate:refresh');
-});
+Route::get('/service/{service}', [ServiceController::class, 'show']);
+Route::get('/mechanic/{mechanic}', [MechanicController::class, 'show']);
 
 
 
