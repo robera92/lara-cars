@@ -69,7 +69,7 @@ class MechanicController extends Controller
      */
     public function show(Mechanic $mechanic)
     {
-        //
+        return view('pages.show-mechanic', compact('mechanic'));
     }
 
     /**
@@ -93,6 +93,7 @@ class MechanicController extends Controller
      */
     public function destroy(Mechanic $mechanic)
     {
-        //
+        $mechanic->delete();
+        return redirect('/');
     }
 }

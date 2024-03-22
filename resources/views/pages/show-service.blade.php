@@ -3,7 +3,15 @@
 @section('content')
 <div class="row mt-3">
 
-@foreach($mechanics as $mechanic)
+<h2>{{__('Servisas:')}} {{ $service->title }}</h2>
+<ul class="list-group list-group-flush">
+    <li class="list-group-item">{{__('Adresas:')}} {{ $service->address }}</li>
+    <li class="list-group-item">{{__('Vadovas:')}} {{ $service->manager }}</li>
+  </ul>
+<hr/>
+@if(count($service->mechanics) > 0)
+<h3>{{__('Servise dirbantys mechanikai:')}}</h3>
+@foreach($service->mechanics as $mechanic)
 <div class="col-md-3">
 <div class="card">
   <img src="{{asset('/storage/app/public/'.$mechanic->img_path)}}" class="card-img-top" alt="...">
@@ -19,5 +27,8 @@
 </div>
 </div>
 @endforeach
+@else
+<p>{{__('Mechaniku servise nera, pridekite!')}}</p>
+@endif
 </div>
 @endsection

@@ -8,7 +8,10 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\MechanicController;
 use \App\Http\Controllers\Auth\AuthenticatedSessionController;
 
+use App\Http\Controllers\LikesController;
+
 use App\Models\Mechanic;
+use App\Models\Likes;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,10 +53,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/edit-mechanic/{mechanic}', [MechanicController::class, 'edit']);
     Route::get('/edit-mechanic/{mechanic}/delete', [MechanicController::class, 'destroy']);
 
-
-
     // other routes
     Route::get('/logout', '\App\Http\Controllers\Auth\AuthenticatedSessionController@destroy');
+    Route::get('/like/{id}', [LikesController::class, 'store']);
+
+
 
 });
 
