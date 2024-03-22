@@ -68,5 +68,4 @@ Route::get('/mechanic/{mechanic}', [MechanicController::class, 'show']);
 
 
 
-
 require __DIR__.'/auth.php';
